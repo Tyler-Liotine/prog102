@@ -42,7 +42,7 @@ site_exposure <- function(site, date) {
   day_end <-  date + 86400
   exp_idx <- kefj_site == site & kefj_datetime >= day_start & kefj_datetime <= day_end
   site_exp <- kefj_exposure[exp_idx]
-  return(site_idx)
+  return(site_exp)
 }
 
 # Write your datetime extraction function here
@@ -58,12 +58,14 @@ get_dates <- function(site, date) {
 # Visualize Aialik temperatures on 2012-06-01
 Aialik_temp <- extract_temp("Aialik", "2012-06-01")
 Aialik_datetime <- get_dates("Aialik", "2012-06-01")
-plot(Aialik_datetime, Aialik_temp)
+Aialik_exp <- site_exposure("Aialik", "2012-06-01")
+plot_kefj(Aialik_datetime, Aialik_temp, Aialik_exp)
 
 # Visualize Nuka_Pass temperatures on 2018-07-01
-Nuka_Pass_temp <- extract_temp("Nuka_Pass", "2012-06-01")
-Nuka_Pass_datetime <- get_dates("Nuka_Pass", "2012-06-01")
-plot(Nuka_Pass_datetime, Nuka_Pass_temp)
+Nuka_Pass_temp <- extract_temp("Nuka_Pass", "2018-07-01")
+Nuka_Pass_datetime <- get_dates("Nuka_Pass", "2018-07-01")
+Nuka_Pass_exp <- site_exposure("Nuka_Pass", "2018-07-01")
+plot_kefj(Nuka_Pass_datetime, Nuka_Pass_temp, Nuka_Pass_exp)
 
 # How does the visualization code above compare to what you wrote in PROG101?
 
